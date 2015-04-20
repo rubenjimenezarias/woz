@@ -81,4 +81,8 @@ public class Player
             System.out.println();
         }
     }
+    
+    public void take(String item){
+       System.out.println("ejecutandose take");     
+    }
 }
