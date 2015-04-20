@@ -83,6 +83,6 @@ public class Player
     }
     
     public void take(String item){
-       System.out.println("ejecutandose take");     
+       System.out.println(item);     
     }
 }

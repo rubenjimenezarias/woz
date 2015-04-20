@@ -158,7 +158,7 @@ public class Game
             wantToQuit = quit(command);
         }
         else if (commandWord.equals("take")){
-          player.take("");
+          player.take(command.getSecondWord());
         }
 
         return wantToQuit;
