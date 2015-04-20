@@ -149,7 +149,7 @@ public class Game
             look();
         }
         else if(commandWord.equals("eat")) {
-            eat();
+            player.eat();
         }
         else if(commandWord.equals("back")) {
          //   back();
@@ -229,14 +229,7 @@ public class Game
         printLocationInfo();
     }
 
-    /**
-     * The player eats
-     */  
-    private void eat() 
-    {
-        System.out.println("You have eaten now and you are not hungry any more");
-    }
-    
+
     /**
      * Return to the previous room
      */

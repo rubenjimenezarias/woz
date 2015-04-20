@@ -22,10 +22,18 @@ public class Player
     {
         currentRoom = room;
     }
-    
+
     public Room getCurrentRoom()
     {
         return currentRoom;
     }
-    
+
+    /**
+     * The player eats
+     */  
+    public void eat() 
+    {
+        System.out.println("You have eaten now and you are not hungry any more");
+    }
+
 }
