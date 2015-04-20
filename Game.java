@@ -191,18 +191,9 @@ public class Game
         }
 
         String direction = command.getSecondWord();
+        player.goRoom(direction);
 
-        // Try to leave current room.      
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            //visitedRooms.push(currentRoom);          
-            //currentRoom = nextRoom;
-            player.look();
-        }
+        
     }
 
     /** 

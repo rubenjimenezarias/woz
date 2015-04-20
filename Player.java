@@ -49,4 +49,21 @@ public class Player
         System.out.println(currentRoom.getLongDescription());      
     }
 
+    public void goRoom(String direccion)
+    {
+        
+        
+        // Try to leave current room.      
+        Room nextRoom = currentRoom.getExit(direccion);
+
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            
+            visitedRooms.push(currentRoom);          
+            currentRoom = nextRoom;
+            look();
+        }
+    }
 }
