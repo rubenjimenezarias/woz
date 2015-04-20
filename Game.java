@@ -152,7 +152,7 @@ public class Game
             player.eat();
         }
         else if(commandWord.equals("back")) {
-         //   back();
+            player.back();
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
@@ -214,21 +214,6 @@ public class Game
 
 
 
-
-    /**
-     * Return to the previous room
-     */
-//     private void back()
-//     {
-//         if (!visitedRooms.empty()) {
-//             currentRoom = visitedRooms.pop();
-//             printLocationInfo();
-//         }
-//         else {
-//             System.out.println("You are at the beggining of the game");
-//             System.out.println();
-//         }
-//     }
 
     
 

@@ -66,4 +66,19 @@ public class Player
             look();
         }
     }
+    
+    /**
+     * Return to the previous room
+     */
+    public void back()
+    {
+        if (!visitedRooms.empty()) {
+            currentRoom = visitedRooms.pop();
+            look();
+        }
+        else {
+            System.out.println("You are at the beggining of the game");
+            System.out.println();
+        }
+    }
 }
