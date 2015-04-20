@@ -121,7 +121,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        printLocationInfo();
+        player.look();
     }
 
     /**
@@ -146,7 +146,7 @@ public class Game
             goRoom(command);
         }
         else if(commandWord.equals("look")) {
-            look();
+            player.look();
         }
         else if(commandWord.equals("eat")) {
             player.eat();
@@ -201,7 +201,7 @@ public class Game
         else {
             //visitedRooms.push(currentRoom);          
             //currentRoom = nextRoom;
-            printLocationInfo();
+            player.look();
         }
     }
 
@@ -221,13 +221,7 @@ public class Game
         }
     }
 
-    /** 
-     * Print the room's long description 
-     */   
-    private void look()
-    {
-        printLocationInfo();
-    }
+
 
 
     /**
@@ -246,8 +240,5 @@ public class Game
 //     }
 
     
-    private void printLocationInfo()
-    {
-        System.out.println(player.getCurrentRoom().getLongDescription());      
-    }
+
 }

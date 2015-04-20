@@ -36,4 +36,17 @@ public class Player
         System.out.println("You have eaten now and you are not hungry any more");
     }
 
+    /** 
+     * Print the room's long description 
+     */   
+    public void look()
+    {
+        printLocationInfo();
+    }
+
+    private void printLocationInfo()
+    {
+        System.out.println(currentRoom.getLongDescription());      
+    }
+
 }
