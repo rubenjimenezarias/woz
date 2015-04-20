@@ -9,6 +9,8 @@ public class Item
 {
     private String description;
     private double weight;
+    private int id;
+    private static int currentId = 1; 
     
     /**
      * Constructor for objects of class Item
@@ -20,6 +22,8 @@ public class Item
     {
         this.description = description;
         this.weight = weight;
+        id = currentId;
+        currentId++;
     }
     
     /**
@@ -32,4 +36,8 @@ public class Item
         return description + " (" + weight + " kg.)";
     }
     
+    public int getId()
+    {
+        return id;
+    }
 }
