@@ -23,7 +23,7 @@ public class Player
         currentRoom = room;
     }
     
-    public Room getCurretRoom()
+    public Room getCurrentRoom()
     {
         return currentRoom;
     }

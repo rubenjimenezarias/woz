@@ -17,20 +17,23 @@ import java.util.Stack;
  * @version 2011.07.31
  */
 
-public class Game 
+public class Game       
 {
     private Parser parser;
-    private Room currentRoom;
-    private Stack<Room> visitedRooms;
+    private Player player;
+    
     
 
     /**
      * Create the game and initialise its internal map.
-     */
+     */                 
     public Game() 
     {
+        player = new Player();
         createRooms();
         parser = new Parser();
+        
+        
     }
 
     /**
@@ -86,8 +89,8 @@ public class Game
         
         portugal.addItem(new Item("Una armadura", 20.2));        
 
-        currentRoom = leon;  // start game outside
-        visitedRooms = new Stack<>();
+        player.setCurrentRoom(leon);  // start game outside
+
     }
 
     /**
@@ -149,7 +152,7 @@ public class Game
             eat();
         }
         else if(commandWord.equals("back")) {
-            back();
+         //   back();
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
@@ -190,14 +193,14 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.      
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
-            visitedRooms.push(currentRoom);          
-            currentRoom = nextRoom;
+            //visitedRooms.push(currentRoom);          
+            //currentRoom = nextRoom;
             printLocationInfo();
         }
     }
@@ -237,21 +240,21 @@ public class Game
     /**
      * Return to the previous room
      */
-    private void back()
-    {
-        if (!visitedRooms.empty()) {
-            currentRoom = visitedRooms.pop();
-            printLocationInfo();
-        }
-        else {
-            System.out.println("You are at the beggining of the game");
-            System.out.println();
-        }
-    }
+//     private void back()
+//     {
+//         if (!visitedRooms.empty()) {
+//             currentRoom = visitedRooms.pop();
+//             printLocationInfo();
+//         }
+//         else {
+//             System.out.println("You are at the beggining of the game");
+//             System.out.println();
+//         }
+//     }
 
     
     private void printLocationInfo()
     {
-        System.out.println(currentRoom.getLongDescription());      
+        System.out.println(player.getCurrentRoom().getLongDescription());      
     }
 }
