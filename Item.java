@@ -1,4 +1,4 @@
-
+                                                                                                                            
 /**
  * An item contained in a room
  * 
@@ -33,7 +33,7 @@ public class Item
      */
     public String getLongDescription()
     {
-        return description + " (" + weight + " kg.)";
+        return description + "(" + id + ") (" + weight + " kg.)";
     }
     
     public int getId()

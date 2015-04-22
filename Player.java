@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.ArrayList;
 /**
  * Write a description of class Player here.
  * 
@@ -10,12 +11,14 @@ public class Player
     // instance variables - replace the example below with your own
     private Room currentRoom;
     private Stack<Room> visitedRooms;
+    private ArrayList<Item> mochila;
     /**
      * Constructor for objects of class Player
      */
     public Player()
     {
         visitedRooms = new Stack<>();
+        mochila = new ArrayList<>();
     }
 
     public void setCurrentRoom(Room room)
@@ -82,7 +85,20 @@ public class Player
         }
     }
     
-    public void take(String item){
-       System.out.println(item);     
+    public void take(String idItem){
+       Item objetoActual = currentRoom.removeItem(idItem);
+       if(objetoActual != null){
+           mochila.add(objetoActual); 
+           
+       }
+       else{
+           System.out.println("el objeto no se encuentra en la habitacion");
+       }
     }
 }
+
+
+
+
+
+

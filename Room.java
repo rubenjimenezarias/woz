@@ -96,6 +96,27 @@ public class Room
     {
         items.add(item);
     }
+    // Devuelve el objeto correspondiente al idItem o null si no estuviera en la habitacion.
+    //si encuentra el objeto de la habitacion lo elimina
+    public Item removeItem(String idItem){
+        Item itemADevolver = null;
+        int cont = 0;
+        boolean encontrado = false;
+        
+        
+        while(!encontrado && cont < items.size())
+        {
+            if(Integer.parseInt(idItem) == items.get(cont).getId())
+            {
+                itemADevolver = items.get(cont);
+                encontrado = true;
+                items.remove(itemADevolver);
+            }
+            cont++;
+        }
+        
+        return itemADevolver;
+    }
     
     
     
