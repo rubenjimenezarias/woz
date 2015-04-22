@@ -160,6 +160,12 @@ public class Game
         else if (commandWord.equals("take")){
           player.take(command.getSecondWord());
         }
+        else if (commandWord.equals("drop")){
+            player.drop(command.getSecondWord());
+        }
+        else if (commandWord.equals("items")){
+            player.listItems();
+        }
 
         return wantToQuit;
     }

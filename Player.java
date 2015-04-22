@@ -121,6 +121,31 @@ public class Player
         return currentCarry;
     }   
 
-        
+    public void drop(String item){
+        if(item != null){
+            Item buscado = null;
+            int idBuscada = Integer.parseInt(item);
+            for (int i=0; i < mochila.size() && buscado == null; i++){
+                if(idBuscada == mochila.get(i).getId()){
+                    buscado = mochila.get(i);
+                }
+            }
+            if(buscado == null){
+                System.out.println("Ese objeto no esta en la mochila");
+            }else{
+                System.out.println("Has dejado: " + buscado.getLongDescription());
+                currentRoom.addItem(buscado);
+                mochila.remove(buscado);
+            }
+        }else{
+            System.out.println("Necesito que indiques que soltar");
+        }
+    }
+    
+    public void listItems(){
+        for(Item obj : mochila){
+            System.out.println(obj.getLongDescription());
+        }
+    }
 }
 
