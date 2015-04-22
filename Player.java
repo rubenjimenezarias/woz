@@ -89,14 +89,21 @@ public class Player
     public void take(String idItem){
         Item objetoActual = currentRoom.searchItem(idItem);
         if(objetoActual != null){
-            if((currentCarry() + objetoActual.getWeight()) < maxCarry)
+            if(objetoActual.puedeCogerse())
             {
-                mochila.add(objetoActual); 
-                currentRoom.removeItem(objetoActual);
+                if((currentCarry() + objetoActual.getWeight()) < maxCarry)
+                {
+                    mochila.add(objetoActual); 
+                    currentRoom.removeItem(objetoActual);
+                    System.out.println("Has cogido el objeto" + objetoActual.getLongDescription());
+                }
+                else
+                {
+                    System.out.println("No puedes coger ese objeto porque llevas mucho peso");
+                }
             }
-            else
-            {
-                System.out.println("No puedes coger ese objeto porque llevas mucho peso");
+            else{
+                System.out.println("El objeto no puede cogerse");
             }
         }
         else{
@@ -115,9 +122,5 @@ public class Player
     }   
 
         
-        
-        
 }
-
-
 
