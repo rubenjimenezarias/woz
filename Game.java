@@ -29,7 +29,7 @@ public class Game
      */                 
     public Game() 
     {
-        player = new Player();
+        player = new Player(1.0);
         createRooms();
         parser = new Parser();
         

@@ -40,4 +40,9 @@ public class Item
     {
         return id;
     }
+    
+    public double getWeight()
+    {
+        return weight;
+    }
 }

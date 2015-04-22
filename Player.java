@@ -12,13 +12,15 @@ public class Player
     private Room currentRoom;
     private Stack<Room> visitedRooms;
     private ArrayList<Item> mochila;
+    private double maxCarry;
     /**
      * Constructor for objects of class Player
      */
-    public Player()
+    public Player(double maxCarry)
     {
         visitedRooms = new Stack<>();
         mochila = new ArrayList<>();
+        this.maxCarry = maxCarry;
     }
 
     public void setCurrentRoom(Room room)
@@ -54,8 +56,7 @@ public class Player
 
     public void goRoom(String direccion)
     {
-        
-        
+
         // Try to leave current room.      
         Room nextRoom = currentRoom.getExit(direccion);
 
@@ -63,13 +64,13 @@ public class Player
             System.out.println("There is no door!");
         }
         else {
-            
+
             visitedRooms.push(currentRoom);          
             currentRoom = nextRoom;
             look();
         }
     }
-    
+
     /**
      * Return to the previous room
      */
@@ -84,21 +85,39 @@ public class Player
             System.out.println();
         }
     }
-    
+
     public void take(String idItem){
-       Item objetoActual = currentRoom.removeItem(idItem);
-       if(objetoActual != null){
-           mochila.add(objetoActual); 
-           
-       }
-       else{
-           System.out.println("el objeto no se encuentra en la habitacion");
-       }
+        Item objetoActual = currentRoom.searchItem(idItem);
+        if(objetoActual != null){
+            if((currentCarry() + objetoActual.getWeight()) < maxCarry)
+            {
+                mochila.add(objetoActual); 
+                currentRoom.removeItem(objetoActual);
+            }
+            else
+            {
+                System.out.println("No puedes coger ese objeto porque llevas mucho peso");
+            }
+        }
+        else{
+            System.out.println("el objeto no se encuentra en la habitacion");
+        }
     }
+
+    private double currentCarry()
+    {
+        double currentCarry = 0F;
+        for(int i = 0; i < mochila.size(); i++)
+        {
+            currentCarry += mochila.get(i).getWeight();
+        }
+        return currentCarry;
+    }   
+
+        
+        
+        
 }
-
-
-
 
 
 
