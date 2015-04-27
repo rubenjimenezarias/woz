@@ -139,32 +139,35 @@ public class Game
         }
 
         Option commandWord = command.getCommandWord();
-        if (commandWord == Option.HELP) {
-            printHelp();
-        }
-        else if (commandWord == Option.GO) {
-            goRoom(command);
-        }
-        else if(commandWord == Option.LOOK) {
-            player.look();
-        }
-        else if(commandWord == Option.EAT) {
-            player.eat();
-        }
-        else if(commandWord == Option.BACK) {
-            player.back();
-        }
-        else if (commandWord == Option.QUIT) {
-            wantToQuit = quit(command);
-        }
-        else if (commandWord == Option.TAKE){
-          player.take(command.getSecondWord());
-        }
-        else if (commandWord == Option.DROP){
-            player.drop(command.getSecondWord());
-        }
-        else if (commandWord == Option.ITEMS){
-            player.listItems();
+        switch (commandWord)
+        {
+            case HELP:
+                printHelp();
+                break;
+            case GO:
+                goRoom(command);
+                break;
+            case LOOK:
+                player.look();
+                break;
+            case EAT:
+                player.eat();
+                break;
+            case BACK:
+                player.back();
+                break;
+            case QUIT:
+                wantToQuit = quit(command);                
+                break;
+            case TAKE:
+                player.take(command.getSecondWord());
+                break;
+            case DROP:
+                player.drop(command.getSecondWord());
+                break;
+            case ITEMS:
+                player.listItems();
+                break;   
         }
 
         return wantToQuit;
