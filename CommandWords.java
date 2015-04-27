@@ -22,15 +22,12 @@ public class CommandWords
     public CommandWords()
     {
         commands = new HashMap<>();
-        commands.put("ir", Option.GO);
-        commands.put("salir", Option.QUIT);
-        commands.put("volver", Option.BACK);
-        commands.put("ayuda", Option.HELP);
-        commands.put("coger", Option.TAKE);
-        commands.put("dejar", Option.DROP);
-        commands.put("comer", Option.EAT);
-        commands.put("mirar", Option.LOOK);
-        commands.put("items", Option.ITEMS);
+        
+        for (Option opcion : Option.values())
+        {
+            commands.put(opcion.getComando(), opcion);
+        }
+        
     }
 
     /**
