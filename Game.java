@@ -41,55 +41,45 @@ public class Game
      */
     private void createRooms()
     {
-        Room galicia, leon, castilla, portugal, aragon, granada;
-
+        Room JUNTA, SANTODOMINGO, GUZMAN, SANPEDRO, PLAZATOROS, LASTRA, MCDONALD;
+         
         // create the rooms
-        galicia = new Room("el reino de Galicia");
-        leon = new Room("el reino de León");
-        castilla = new Room("el reino de Castilla");
-        aragon = new Room("el reino de Aragon");
-        granada = new Room("el reino de Granada");
-        portugal = new Room("el reino de Portugal");                          
-
+        JUNTA = new Room("PARKING LA JUNTA");
+        SANTODOMINGO = new Room("PARKING DE SANTO DOMINGO");
+        GUZMAN = new Room("PARKING DE GUZMAN");
+        SANPEDRO = new Room("PARKING DE SAN PEDRO");
+        PLAZATOROS = new Room("PARKING DE LA PLAZA DE TOROS");
+        LASTRA = new Room("PARKING DE LA LASTRA");
+        MCDONALD = new Room("PARKING DEL MC DONALD");
+        
         // initialise room exits
-        galicia.setExit("east", leon);
-        galicia.setExit("south", portugal);
-        galicia.setExit("southEast", castilla);
-
-        leon.setExit("south", castilla);
-        leon.setExit("west", galicia);
-
-        castilla.setExit("north", leon);
-        castilla.setExit("east", aragon);
-        castilla.setExit("south", granada);
-        castilla.setExit("west", portugal);
-        castilla.setExit("northWest", galicia);
-
-        granada.setExit("north", castilla);
-        granada.setExit("jumpingNorthEast", aragon);
-
-        aragon.setExit("west", castilla);
-
-        portugal.setExit("north", galicia);
-        portugal.setExit("east", castilla);
+        SANTODOMINGO.setExit("north",SANPEDRO);
+        SANTODOMINGO.setExit("east",PLAZATOROS);
+        SANTODOMINGO.setExit("oeste",JUNTA);
+        SANTODOMINGO.setExit("southeast",GUZMAN);
         
-        //define the items
-        galicia.addItem(new Item("Una espada gaelica", 3.5, false));
-        galicia.addItem(new Item("Un tonel de vino", 10.2, false));
+        JUNTA.setExit("east",SANTODOMINGO);
         
-        leon.addItem(new Item("El Santo Grial", 1.4, false));
+        GUZMAN.setExit("northwest",SANTODOMINGO);
         
-        castilla.addItem(new Item("Un cuchillo afilado", 0.5, true));
-        castilla.addItem(new Item("Un cofre de oro", 3.0, true));
-        castilla.addItem(new Item("Un baul de madera", 24.8, true));
+        SANPEDRO.setExit("south",SANTODOMINGO);
         
-        aragon.addItem(new Item("Una carreta", 35.5, true));
+        PLAZATOROS.setExit("west",SANTODOMINGO);
+        PLAZATOROS.setExit("north",LASTRA);
+        PLAZATOROS.setExit("southeast",MCDONALD);
         
-        granada.addItem(new Item("Una pocima contra el dolor de cabeza", 0.6, true));
+        MCDONALD.setExit("northwest",PLAZATOROS);
         
-        portugal.addItem(new Item("Una armadura", 20.2, true));        
-
-        player.setCurrentRoom(leon);  // start game outside
+        LASTRA.setExit("south",PLAZATOROS);
+        //asignamos el comienzo del camino
+        player.setCurrentRoom(SANTODOMINGO);
+        //Asignamos el parquing vacio
+        MCDONALD.setVacio();
+        
+        //introducimos objetos en las habitaciones
+        SANTODOMINGO.addItem(new Item("Pelota", 2, true));
+        SANTODOMINGO.addItem(new Item("Guantes",0.5, true));
+        GUZMAN.addItem(new Item ("Botella",1, false));  
 
     }
 
@@ -223,10 +213,4 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-
-
-
-
-    
-
 }

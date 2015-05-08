@@ -21,6 +21,7 @@ public class Room
     private String description;   
     private HashMap<String, Room> exits;
     private ArrayList<Item> items;
+    private boolean vacio;
 
     /**
      * Create a room described "description". Initially, it has
@@ -33,6 +34,7 @@ public class Room
         this.description = description;
         exits = new HashMap<>();
         items = new ArrayList<>();
+        vacio = false;
     }
 
     public void setExit(String direction, Room nextRoom)
@@ -121,8 +123,13 @@ public class Room
         items.remove(item);
     }
     
+    public void setVacio(){
+        vacio = true;
+    }
     
-    
+    public boolean getVacio(){
+        return vacio;
+    }
 
     
     

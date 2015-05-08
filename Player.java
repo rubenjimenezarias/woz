@@ -1,5 +1,6 @@
 import java.util.Stack;
 import java.util.ArrayList;
+import java.lang.System;
 /**
  * Write a description of class Player here.
  * 
@@ -13,6 +14,10 @@ public class Player
     private Stack<Room> visitedRooms;
     private ArrayList<Item> mochila;
     private double maxCarry;
+    
+    private int gasolina;
+    private long tiempoUltimoMovimiento;
+    
     /**
      * Constructor for objects of class Player
      */
@@ -21,6 +26,8 @@ public class Player
         visitedRooms = new Stack<>();
         mochila = new ArrayList<>();
         this.maxCarry = maxCarry;
+        gasolina = 6;
+        tiempoUltimoMovimiento = System.currentTimeMillis();
     }
 
     public void setCurrentRoom(Room room)
@@ -47,27 +54,43 @@ public class Player
     public void look()
     {
         printLocationInfo();
+        System.out.println("Te quedan " + gasolina + " litros de gasolina.");
     }
 
     private void printLocationInfo()
     {
-        System.out.println(currentRoom.getLongDescription());      
+        if (currentRoom.getVacio()){
+            System.out.println("ENHORABUENA YA HAS APARCADO");
+            
+        }
+        else{
+            System.out.println(currentRoom.getLongDescription());
+        }
     }
 
     public void goRoom(String direccion)
     {
-
-        // Try to leave current room.      
-        Room nextRoom = currentRoom.getExit(direccion);
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
+        if (((System.currentTimeMillis()-tiempoUltimoMovimiento)/1000) < 2){
+            System.out.println("GAME OVER.Has ido muy rapido te ha pillado la policia");
         }
-        else {
-
-            visitedRooms.push(currentRoom);          
-            currentRoom = nextRoom;
-            look();
+        else if(gasolina == 0){
+            System.out.println("GAME OVER SIN GASOLINA!");
+        }
+        else{
+            gasolina --;
+            tiempoUltimoMovimiento = System.currentTimeMillis();
+            // Try to leave current room.      
+            Room nextRoom = currentRoom.getExit(direccion);
+    
+            if (nextRoom == null) {
+                System.out.println("There is no door!");
+            }
+            else {
+    
+                visitedRooms.push(currentRoom);          
+                currentRoom = nextRoom;
+                look();
+            }
         }
     }
 
@@ -76,6 +99,14 @@ public class Player
      */
     public void back()
     {
+        if (((System.currentTimeMillis()-tiempoUltimoMovimiento)/1000) > 8){
+            System.out.println("Has ido muy rapido te ha pillado la policia");
+        }
+        if (gasolina == 0){
+            System.out.println("GAME OVER SIN GASOLINA!");
+        }
+        gasolina --;
+        tiempoUltimoMovimiento = System.currentTimeMillis();
         if (!visitedRooms.empty()) {
             currentRoom = visitedRooms.pop();
             look();
